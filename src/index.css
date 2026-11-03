@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@import "./styles/tokens.css";
+
+/* Base typographic and surface reset */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100%;
+}
+
+/* Ensure only regular (400) and medium (500) font weights are used */
+body, button, input, select, textarea {
+  font-weight: 400;
+}
+
+strong, b, h1, h2, h3, h4, h5, h6, .font-medium {
+  font-weight: 500;
+}
+
+/* Accessible visible focus state */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Flat design discipline: remove accidental default shadows */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Ensure minimum text size is 12px everywhere */
+.text-xs {
+  font-size: 12px;
+  line-height: 16px;
+}

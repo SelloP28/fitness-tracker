@@ -1,0 +1,6 @@
+{
+  "name": "Fuel & Form",
+  "description": "Clean, minimal personal fitness, nutrition, and training tracking Progressive Web App.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

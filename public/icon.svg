@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="128" fill="#2563eb" />
+  <!-- Minimal geometric Fuel & Form icon: Flame + Dumbbell / Barbell geometry -->
+  <g transform="translate(106, 106)" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Outer rounded hexagon / shield of Form -->
+    <path d="M150 10 L270 75 L270 225 L150 290 L30 225 L30 75 Z" stroke="#ffffff" stroke-width="20" opacity="0.9" />
+    <!-- Inner core: minimalist flame / droplet of Fuel -->
+    <path d="M150 65 C150 65 195 125 195 170 C195 195 175 215 150 215 C125 215 105 195 105 170 C105 125 150 65 150 65 Z" fill="#ffffff" stroke="none" />
+    <path d="M150 135 C150 135 168 160 168 178 C168 188 160 196 150 196 C140 196 132 188 132 178 C132 160 150 135 150 135 Z" fill="#2563eb" stroke="none" />
+  </g>
+</svg>
