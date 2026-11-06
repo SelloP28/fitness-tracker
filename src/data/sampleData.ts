@@ -1,16 +1,4 @@
-import { NutritionTargets, TodayNutrition, QuickAddOption, WorkoutOverview, NavigationItem } from '../lib/types';
-
-export const initialTargets: NutritionTargets = {
-  calories: 2600,
-  protein: 160,
-  water: 3.0,
-};
-
-export const initialNutrition: TodayNutrition = {
-  calories: 1640,
-  protein: 98,
-  water: 1.2,
-};
+import { QuickAddOption, WorkoutOverview, NavigationItem } from '../lib/types';
 
 export const quickAddOptions: QuickAddOption[] = [
   {
@@ -36,11 +24,6 @@ export const quickAddOptions: QuickAddOption[] = [
 export const sampleWorkout: WorkoutOverview = {
   name: 'Upper A',
   subtitle: 'Dumbbells, 6 exercises',
-};
-
-export const pendingPhotosBanner = {
-  count: 2,
-  message: '2 photos waiting to confirm',
 };
 
 export const navigationItems: NavigationItem[] = [
