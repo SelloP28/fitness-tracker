@@ -15,6 +15,9 @@ import { createMealItem, createMealLog, getPendingMealLogCount, getTodayMealTota
 import { addWater, getWaterTotalForDay } from '../lib/api/water';
 import { getLatestTargets } from '../lib/api/targets';
 import type { NutritionTargets } from '../lib/api/types';
+import { useEnergyUnit } from '../lib/EnergyUnitContext';
+import { energyLabel } from '../lib/energy';
+import { kcalToKj } from '../lib/energy';
 
 interface TodayData {
   calories: number;
@@ -25,6 +28,7 @@ interface TodayData {
 const emptyNutrition: TodayData = { calories: 0, protein: 0, water: 0 };
 
 export const TodayPage: React.FC = () => {
+  const { energyUnit } = useEnergyUnit();
   const [nutrition, setNutrition] = useState<TodayData>(emptyNutrition);
   const [targets, setTargets] = useState<NutritionTargets | null>(null);
   const [pendingMeals, setPendingMeals] = useState(0);
@@ -158,8 +162,8 @@ export const TodayPage: React.FC = () => {
                   <ProgressRing
                     value={nutrition.calories}
                     target={targets.calories}
-                    unit="kcal"
-                    label="Calories progress"
+                    unit={energyUnit}
+                    label="Energy progress"
                     size={120}
                     strokeWidth={10}
                   />
@@ -227,7 +231,7 @@ export const TodayPage: React.FC = () => {
                 <span className="block text-[12px] font-normal text-[var(--color-text-secondary)] mb-2">Quick add</span>
                 <div className="flex flex-wrap gap-2">
                   {quickAddOptions.map((option) => (
-                    <Chip key={option.id} aria-label={`${option.label}, ${option.calories} calories, ${option.protein} grams protein`}>
+                    <Chip key={option.id} aria-label={`${option.label}, ${energyUnit === 'kJ' ? kcalToKj(option.calories) : option.calories} ${energyLabel(energyUnit)}, ${option.protein} grams protein`}>
                       {option.label}
                     </Chip>
                   ))}

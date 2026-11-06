@@ -9,6 +9,7 @@ import {
   Send,
   User,
   LogOut,
+  Zap,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageHeader } from '../components/PageHeader';
@@ -16,6 +17,9 @@ import { Card } from '../components/Card';
 import { Banner } from '../components/Banner';
 import { useAuth } from '../lib/AuthContext';
 import { moreMenuItems } from '../data/sampleData';
+import { Chip } from '../components/Chip';
+import { useEnergyUnit } from '../lib/EnergyUnitContext';
+import type { EnergyUnit } from '../lib/energy';
 
 const itemIcons: Record<string, React.ElementType> = {
   presets: Sliders,
@@ -29,6 +33,7 @@ const itemIcons: Record<string, React.ElementType> = {
 
 export const MorePage: React.FC = () => {
   const { logout } = useAuth();
+  const { energyUnit, loading: energyUnitLoading, setEnergyUnit, error: energyUnitError } = useEnergyUnit();
   const [signingOut, setSigningOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -81,6 +86,30 @@ export const MorePage: React.FC = () => {
             <button key={item.id} type="button" className={rowClassName}>{contents}</button>
           );
         })}
+        <div className="min-h-[64px] px-4 py-2 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-[8px] bg-[var(--color-bg-subtle)] border border-[var(--color-border-card)] flex items-center justify-center text-[var(--color-text-secondary)] shrink-0">
+              <Zap className="w-4 h-4 stroke-[1.75px]" aria-hidden="true" />
+            </div>
+            <div>
+              <span className="block text-[14px] font-medium text-[var(--color-text-primary)]">Energy unit</span>
+              <span className="block text-[12px] text-[var(--color-text-secondary)]">Choose kcal or kJ</span>
+            </div>
+          </div>
+          <div className="flex gap-1" aria-label="Energy unit">
+            {(['kcal', 'kJ'] as const).map((unit: EnergyUnit) => (
+              <Chip
+                key={unit}
+                selected={energyUnit === unit}
+                aria-pressed={energyUnit === unit}
+                disabled={energyUnitLoading}
+                onClick={() => void setEnergyUnit(unit)}
+              >
+                {unit}
+              </Chip>
+            ))}
+          </div>
+        </div>
         <button
           type="button"
           disabled={signingOut}
@@ -96,6 +125,7 @@ export const MorePage: React.FC = () => {
           <ChevronRight className="w-4 h-4 text-[var(--color-text-tertiary)] shrink-0" aria-hidden="true" />
         </button>
       </Card>
+      {energyUnitError && <Banner message={energyUnitError} />}
       {error && <Banner message={error} />}
     </div>
   );

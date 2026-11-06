@@ -30,7 +30,7 @@ export const ProgressPage: React.FC = () => {
           Progress analytics coming soon
         </h2>
         <p className="text-[13px] text-[var(--color-text-secondary)] max-w-sm leading-relaxed mb-4">
-          Visual trends for body weight (kg), weekly calorie averages, volume progression, and progress photos.
+          Visual trends for body weight (kg), weekly energy averages, volume progression, and progress photos.
         </p>
 
         {/* Lightweight sample trend preview */}

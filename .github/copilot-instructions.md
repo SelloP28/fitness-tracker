@@ -28,6 +28,7 @@ Commands: npm run dev | npm run lint | npm run build | npm test
 ## Units and time
 - The UI works in litres for water; the database stores millilitres. Convert in src/lib/api only.
 - "Today" is the browser's local calendar day. Store timestamps as ISO strings.
+- Energy is stored in kcal in the database (columns calories_kcal and kcal). The UI can show kcal or kJ (1 kcal = 4.184 kJ) based on the user's energy-unit preference. Convert only at the UI/api boundary using src/lib/energy.ts. Never store kJ.
 
 ## Security
 - Never put an API key or secret in this app. Config comes from VITE_ environment variables (public identifiers only). .env files are git-ignored.

@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Calendar, PlusCircle, Dumbbell, TrendingUp, MoreHorizontal, Activity } from 'lucide-react';
 import { navigationItems } from '../data/sampleData';
+import { useEnergyUnit } from '../lib/EnergyUnitContext';
 
 const iconMap = {
   today: Calendar,
@@ -12,6 +13,7 @@ const iconMap = {
 };
 
 export const Sidebar: React.FC = () => {
+  const { energyUnit } = useEnergyUnit();
   return (
     <aside
       aria-label="Desktop navigation sidebar"
@@ -71,7 +73,7 @@ export const Sidebar: React.FC = () => {
 
       {/* System Theme Note / Clean Footer */}
       <div className="p-4 border-t border-[var(--color-border-card)] text-[12px] text-[var(--color-text-secondary)]">
-        <p className="leading-snug">Metric units (kg, L, kcal, g)</p>
+        <p className="leading-snug">Metric units (kg, L, {energyUnit}, g)</p>
         <p className="text-[11px] text-[var(--color-text-tertiary)] mt-0.5">System light &amp; dark</p>
       </div>
     </aside>

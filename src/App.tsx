@@ -11,6 +11,7 @@ import { TargetsPage } from './pages/TargetsPage';
 import { AuthProvider, useAuth } from './lib/AuthContext';
 import { Banner } from './components/Banner';
 import { Button } from './components/Button';
+import { EnergyUnitProvider } from './lib/EnergyUnitContext';
 
 export default function App() {
   return (
@@ -54,14 +55,16 @@ function AuthenticatedLayout() {
   if (!user) return <Navigate to="/login" replace />;
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-page)] text-[var(--color-text-primary)] flex flex-col md:flex-row transition-colors">
-      <Sidebar />
-      <main className="flex-1 w-full min-w-0">
-        <div className="max-w-[960px] mx-auto w-full px-4 sm:px-6 py-5 md:py-8 pb-24 md:pb-12">
-          <Outlet />
-        </div>
-      </main>
-      <TabBar />
-    </div>
+    <EnergyUnitProvider>
+      <div className="min-h-screen bg-[var(--color-bg-page)] text-[var(--color-text-primary)] flex flex-col md:flex-row transition-colors">
+        <Sidebar />
+        <main className="flex-1 w-full min-w-0">
+          <div className="max-w-[960px] mx-auto w-full px-4 sm:px-6 py-5 md:py-8 pb-24 md:pb-12">
+            <Outlet />
+          </div>
+        </main>
+        <TabBar />
+      </div>
+    </EnergyUnitProvider>
   );
 }

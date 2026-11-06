@@ -1,12 +1,14 @@
 import React from 'react';
-import { formatNumber } from '../lib/calculator';
+import { formatEnergy } from '../lib/energy';
+import { kcalToKj } from '../lib/energy';
+import type { EnergyUnit } from '../lib/energy';
 
 interface ProgressRingProps {
   value: number;
   target: number;
   size?: number;
   strokeWidth?: number;
-  unit?: string;
+  unit?: EnergyUnit;
   label?: string;
 }
 
@@ -27,9 +29,9 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
     <div
       role="progressbar"
       aria-label={label}
-      aria-valuenow={value}
+      aria-valuenow={unit === 'kJ' ? kcalToKj(value) : value}
       aria-valuemin={0}
-      aria-valuemax={target}
+      aria-valuemax={unit === 'kJ' ? kcalToKj(target) : target}
       className="relative flex items-center justify-center shrink-0"
       style={{ width: size, height: size }}
     >
@@ -65,10 +67,10 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
       {/* Center text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-1 pointer-events-none">
         <span className="text-[17px] font-medium leading-tight text-[var(--color-text-primary)]">
-          {formatNumber(value)}
+          {formatEnergy(value, unit)}
         </span>
         <span className="text-[12px] font-normal text-[var(--color-text-secondary)] leading-tight mt-0.5">
-          of {formatNumber(target)} {unit}
+          of {formatEnergy(target, unit)} {unit}
         </span>
       </div>
     </div>
